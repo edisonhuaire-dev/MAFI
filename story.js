@@ -4,6 +4,7 @@ const byId = (id) => document.getElementById(id);
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 let musicWidget = null;
 let journeyStarted = false;
+let musicReady = false;
 const songStartMs = 71_000;
 
 function seedFlowers(container, total, offset = 0) {
@@ -25,12 +26,27 @@ function seedFlowers(container, total, offset = 0) {
 
 function setupMusic() {
   const frame = byId("soundcloud-player");
+  const letter = byId("begin-journey");
   if (!window.SC) return;
   musicWidget = window.SC.Widget(frame);
+  const requestMusic = () => {
+    if (!musicReady) return;
+    musicWidget.seekTo(songStartMs);
+    musicWidget.play();
+  };
+  letter.addEventListener("click", requestMusic);
+  letter.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      requestMusic();
+    }
+  });
   musicWidget.bind(window.SC.Widget.Events.READY, () => {
+    musicReady = true;
     musicWidget.setVolume(43);
     musicWidget.seekTo(songStartMs);
-    byId("begin-journey").classList.add("sealed-letter--ready");
+    letter.removeAttribute("aria-disabled");
+    letter.classList.add("sealed-letter--ready");
   });
   musicWidget.bind(window.SC.Widget.Events.PLAY, () => {
     musicWidget.seekTo(songStartMs);
