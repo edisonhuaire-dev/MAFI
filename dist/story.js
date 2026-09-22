@@ -4,6 +4,7 @@ const byId = (id) => document.getElementById(id);
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 let musicWidget = null;
 let journeyStarted = false;
+const songStartMs = 71_000;
 
 function seedFlowers(container, total, offset = 0) {
   for (let index = 0; index < total; index += 1) {
@@ -28,9 +29,13 @@ function setupMusic() {
   musicWidget = window.SC.Widget(frame);
   musicWidget.bind(window.SC.Widget.Events.READY, () => {
     musicWidget.setVolume(43);
+    musicWidget.seekTo(songStartMs);
     byId("begin-journey").classList.add("sealed-letter--ready");
   });
-  musicWidget.bind(window.SC.Widget.Events.PLAY, () => openJourney());
+  musicWidget.bind(window.SC.Widget.Events.PLAY, () => {
+    musicWidget.seekTo(songStartMs);
+    openJourney();
+  });
 }
 
 function openJourney() {
