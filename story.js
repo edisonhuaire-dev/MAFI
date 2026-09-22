@@ -2,23 +2,8 @@ const flowerGlyphs = ["✿", "✾", "❀", "✽"];
 
 const byId = (id) => document.getElementById(id);
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const groupFiveTrack = "https://soundcloud.com/grupo5oficial/el-secreto";
 let musicWidget = null;
-let musicReady = false;
-let musicRequested = false;
-
-function playGroupFive() {
-  if (!musicWidget || !musicReady) return;
-  musicWidget.load(groupFiveTrack, {
-    auto_play: true,
-    buying: false,
-    sharing: false,
-    callback: () => {
-      musicWidget.setVolume(43);
-      musicWidget.play();
-    }
-  });
-}
+let journeyStarted = false;
 
 function seedFlowers(container, total, offset = 0) {
   for (let index = 0; index < total; index += 1) {
@@ -42,29 +27,23 @@ function setupMusic() {
   if (!window.SC) return;
   musicWidget = window.SC.Widget(frame);
   musicWidget.bind(window.SC.Widget.Events.READY, () => {
-    musicReady = true;
     musicWidget.setVolume(43);
-    if (musicRequested) playGroupFive();
+    byId("begin-journey").classList.add("sealed-letter--ready");
   });
+  musicWidget.bind(window.SC.Widget.Events.PLAY, () => openJourney());
 }
 
-function startMusic() {
-  musicRequested = true;
-  playGroupFive();
-}
-
-function setupEntry() {
-  byId("begin-journey").addEventListener("click", () => {
-    startMusic();
-    byId("journey").hidden = false;
-    document.body.classList.add("journey-open");
-    const entry = byId("letter-entry");
-    entry.classList.add("letter-entry--opening");
-    window.setTimeout(() => {
-      entry.remove();
-      byId("carta-inicial").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
-    }, reduceMotion ? 0 : 760);
-  }, { once: true });
+function openJourney() {
+  if (journeyStarted) return;
+  journeyStarted = true;
+  byId("journey").hidden = false;
+  document.body.classList.add("journey-open");
+  const entry = byId("letter-entry");
+  entry.classList.add("letter-entry--opening");
+  window.setTimeout(() => {
+    entry.remove();
+    byId("carta-inicial").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  }, reduceMotion ? 0 : 760);
 }
 
 function setupContinueButtons() {
@@ -107,7 +86,6 @@ function setupGarden() {
 seedFlowers(byId("entry-flowers"), 42);
 seedFlowers(byId("flower-sky"), 124, 42);
 setupMusic();
-setupEntry();
 setupContinueButtons();
 setupReveal();
 setupGarden();
