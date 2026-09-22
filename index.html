@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#16120e" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="description" content="Un jardín que Edison creó para Mafer." />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='17' fill='%2316120e'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='35' fill='%23efbf42'%3E✿%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Un jardín para Mafer</title>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <section class="opening" id="opening" aria-label="Entrada al jardín">
+      <div class="opening__flower" aria-hidden="true">✿</div>
+      <p class="eyebrow">para Mafer</p>
+      <h1>Hay flores que se regalan.<br />Y hay otras que se quedan.</h1>
+      <p class="opening__copy">Quise dejarte un lugar al que puedas volver cuando quieras.</p>
+      <button class="gold-button" id="enter-garden" type="button">Entrar al jardín <span aria-hidden="true">→</span></button>
+      <p class="opening__signature">con cariño, Edison</p>
+    </section>
+
+    <main id="garden" hidden>
+      <header class="site-header">
+        <a class="brand" href="#inicio" aria-label="Volver al inicio">E + M <span>✿</span></a>
+        <a href="#final" class="header-link">para Mafi</a>
+      </header>
+
+      <section class="hero section" id="inicio">
+        <div class="hero__copy reveal">
+          <p class="eyebrow">un jardín para Mafer</p>
+          <h1>No fue una flor.<br /><em>Fue una idea para ti.</em></h1>
+          <p class="lede">Tal vez no podía darte el jardín más grande, pero sí podía hacerte uno que no se marchite.</p>
+          <div class="hero__detail"><span></span> Hecho por Edison, pensando en Mafer.</div>
+        </div>
+        <figure class="hero__image reveal reveal--late">
+          <img src="media/palmeras-juntos.webp" alt="Edison y Mafer abrazados de noche entre palmeras" fetchpriority="high" />
+          <figcaption>Una noche, una foto y un abrazo para guardar.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section note-section">
+        <article class="paper-note reveal">
+          <p class="eyebrow">una pequeña historia</p>
+          <h2>Todo empezó de una forma sencilla.</h2>
+          <p>Una fiesta por amigos en común. Después, conversaciones de la vida. Y de pronto, esa sensación bonita de que con alguien todo se entiende un poquito más fácil.</p>
+          <p class="note-signature">— Edison</p>
+        </article>
+      </section>
+
+      <section class="section eyes-section" aria-labelledby="mirada-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">ojitos lindos</p>
+          <h2 id="mirada-title">Hay algo que me encanta de ti.</h2>
+          <p>Bueno… en realidad son muchas cosas. Pero tu mirada fue la primera pista.</p>
+        </div>
+        <div class="qualities" id="qualities"></div>
+      </section>
+
+      <section class="section timeline-section" aria-labelledby="historia-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">nuestro comienzo</p>
+          <h2 id="historia-title">Pequeñas cosas que ya son nuestras.</h2>
+        </div>
+        <ol class="timeline" id="timeline"></ol>
+      </section>
+
+      <section class="section photo-break">
+        <div class="photo-break__image reveal">
+          <img src="media/sillon-juntos.webp" alt="Mafer y Edison juntos en un momento tranquilo" loading="lazy" />
+        </div>
+        <div class="photo-break__copy reveal">
+          <p class="eyebrow">mai</p>
+          <h2>Hay personas que llegan sin hacer demasiado ruido.</h2>
+          <p>Y terminan ocupando muchísimo espacio dentro de uno.</p>
+          <p class="micro-copy">Esta parte no necesita explicar más.</p>
+        </div>
+      </section>
+
+      <section class="section gallery-section" aria-labelledby="galeria-title">
+        <div class="section-heading section-heading--split reveal">
+          <div>
+            <p class="eyebrow">fotografías que se quedan</p>
+            <h2 id="galeria-title">No todas nuestras fotos tienen que ser perfectas.</h2>
+          </div>
+          <p>Pero son nuestras. Tócalas para mirarlas de cerca.</p>
+        </div>
+        <div class="gallery" id="gallery"></div>
+      </section>
+
+      <section class="section garden-section" aria-labelledby="jardin-title">
+        <div class="garden-card reveal">
+          <div class="garden-card__copy">
+            <p class="eyebrow">un jardín que crece</p>
+            <h2 id="jardin-title">Mi jardín estaba un poquito vacío.</h2>
+            <p>¿Me ayudas? Cada flor guarda una razón pequeña para celebrar que existes.</p>
+            <button class="gold-button" id="plant-flower" type="button">Plantar una flor <span aria-hidden="true">✿</span></button>
+            <p class="garden-count" id="garden-count" aria-live="polite">Aún hay espacio para una flor.</p>
+          </div>
+          <div class="garden-plot" id="garden-plot" aria-label="Jardín interactivo"></div>
+        </div>
+      </section>
+
+      <section class="section secret-section">
+        <div class="secret-card reveal">
+          <p class="eyebrow">un secreto pequeño</p>
+          <h2>Hay un recuerdo escondido por aquí.</h2>
+          <p>No todo tiene que hacer sentido para ser especial.</p>
+          <button class="text-button" id="secret-button" type="button">NO TOCAR <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="stats-card reveal reveal--late" aria-label="Cosas oficiales de nosotros">
+          <p class="eyebrow">cosas oficiales de nosotros</p>
+          <dl>
+            <div><dt>Cómo empezó</dt><dd>Una fiesta</dd></div>
+            <div><dt>Primera salida</dt><dd>Cine</dd></div>
+            <div><dt>Lugar importante</dt><dd>Luna</dd></div>
+            <div><dt>Estado actual</dt><dd>2 loquitos</dd></div>
+          </dl>
+          <p class="stats-card__footer">Datos certificados por Edison Research Institute.</p>
+        </div>
+      </section>
+
+      <section class="section code-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">una explicación en un idioma que entiendo</p>
+          <h2>Compilando sentimientos…</h2>
+        </div>
+        <pre class="code-card reveal"><code><span class="code-muted">const</span> mafer = {
+  nombre: <span class="code-string">"Maria Fernanda"</span>,
+  apodo: <span class="code-string">"Mafi"</span>,
+  primeraPista: <span class="code-string">"su mirada"</span>,
+  importancia: <span class="code-gold">Infinity</span>
+};
+
+<span class="code-muted">const</span> nosotros = {
+  inicio: <span class="code-string">"una fiesta"</span>,
+  energia: <span class="code-string">"2 loquitos"</span>,
+  estado: <span class="code-gold">"todavía escribiéndose"</span>
+};
+
+<span class="code-muted">while</span> (nosotros) {
+  crearRecuerdos();
+}</code></pre>
+      </section>
+
+      <section class="section missing-section" aria-labelledby="extranes-title">
+        <div class="missing-card reveal">
+          <p class="eyebrow">cuando me extrañes</p>
+          <h2 id="extranes-title">Presiona aquí.</h2>
+          <p id="missing-message">Hay un mensaje esperando para ti.</p>
+          <button class="gold-button gold-button--light" id="missing-button" type="button">Abrir un mensaje <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <section class="section letter-section" aria-labelledby="carta-title">
+        <div class="envelope reveal" id="envelope">
+          <div class="envelope__seal" aria-hidden="true">M</div>
+          <p class="eyebrow">para abrir despacio</p>
+          <h2 id="carta-title">Hay cosas que no caben en una canción.</h2>
+          <button class="text-button" id="letter-button" type="button">Abrir carta <span aria-hidden="true">↗</span></button>
+        </div>
+      </section>
+
+      <section class="section morfina-section" aria-labelledby="morfina-title">
+        <div class="morfina__background" aria-hidden="true"></div>
+        <div class="morfina__content reveal">
+          <p class="eyebrow">nuestra canción</p>
+          <h2 id="morfina-title">Morfina.</h2>
+          <p class="morfina__line">Tú. Yo. Y todos esos momentos que solamente nosotros entendemos.</p>
+          <p>Si algún día escuchas esta canción, quiero que sepas que hay un jardín encendido para ti, incluso cuando yo no esté contigo.</p>
+          <div class="song-list" aria-label="Canciones de ustedes">
+            <span>Ojitos Lindos</span><span>MAI</span><span>El Secreto</span><strong>Morfina</strong>
+          </div>
+        </div>
+        <figure class="morfina__photo reveal reveal--late">
+          <img src="media/palmeras-cerca.webp" alt="Mafer abrazando a Edison entre palmeras de noche" loading="lazy" />
+        </figure>
+      </section>
+
+      <section class="section final-section" id="final">
+        <div class="final-section__flower" id="final-flower" aria-hidden="true">✿</div>
+        <p class="eyebrow reveal">una última cosa</p>
+        <h2 class="reveal">Quizá hoy no pude regalarte cientos de flores amarillas.</h2>
+        <p class="final-section__copy reveal">Pero podía hacerte un lugar donde no se marchitan.</p>
+        <button class="final-flower-button reveal" id="final-button" type="button">Tócame</button>
+        <p class="final-reveal" id="final-reveal" hidden>Feliz día de las flores amarillas, Mafer.<br /><span>Para mi Mafi. — Edison</span></p>
+      </section>
+
+      <footer class="credits">
+        <p>UN JARDÍN PARA MAFER</p>
+        <p>Protagonistas: Mafer &amp; Edison · Fotografía: nuestros celulares · Duración: todavía escribiéndose.</p>
+      </footer>
+    </main>
+
+    <dialog class="modal" id="photo-modal" aria-labelledby="modal-caption">
+      <button class="modal__close" type="button" aria-label="Cerrar fotografía">×</button>
+      <img id="modal-image" src="" alt="" />
+      <p id="modal-caption"></p>
+    </dialog>
+
+    <dialog class="modal modal--letter" id="letter-modal" aria-labelledby="letter-modal-title">
+      <button class="modal__close" type="button" aria-label="Cerrar carta">×</button>
+      <article class="letter">
+        <p class="eyebrow">para Mafer</p>
+        <h2 id="letter-modal-title">Mafi,</h2>
+        <p>Quería hacerte algo que se sintiera un poquito como nosotros: una cosa sencilla que, sin avisar, guarda más de lo que parece.</p>
+        <p>Me gusta pensar que todo empezó entre amigos, una fiesta y conversaciones de la vida. Que después hubo una salida al cine, una primera foto, una carta hecha a mano y muchas cosas que no hace falta explicar para que importen.</p>
+        <p>Gracias por tu mirada, por la forma en que nos entendemos y por dejar que mis días tengan una historia nueva. No escribí esto para decir palabras enormes; lo hice para que supieras que en mi mundo hay un lugar pensado para ti.</p>
+        <p>Ojalá sigamos llenándolo, con lo bonito, con lo raro y con esas pequeñas cosas que solo dos loquitos entenderían.</p>
+        <p class="letter__signature">Con cariño,<br />Edison</p>
+      </article>
+    </dialog>
+
+    <dialog class="modal modal--secret" id="secret-modal" aria-labelledby="secret-modal-title">
+      <button class="modal__close" type="button" aria-label="Cerrar secreto">×</button>
+      <img src="media/carro-sonrisa.webp" alt="Mafer y Edison sonriendo juntos de noche" />
+      <div>
+        <p class="eyebrow">sabía que ibas a tocarlo</p>
+        <h2 id="secret-modal-title">Ya que estás aquí…</h2>
+        <p>No todas las fotos tienen que salir perfectas. Algunas solo tienen que recordarnos que fuimos nosotros.</p>
+      </div>
+    </dialog>
+
+    <script src="story.js"></script>
+  </body>
+</html>
