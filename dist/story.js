@@ -42,11 +42,29 @@ const story = {
     "Tu mirada fue una primera pista. Este jardín es otra.",
     "La carta hecha a mano todavía cuenta una historia bonita.",
     "Aquí hay un lugar para volver cuando quieras."
-  ]
+  ],
+  soundtrack: {
+    ojitos: {
+      title: "Ojitos Lindos",
+      artist: "Bad Bunny & Bomba Estéreo",
+      url: "https://soundcloud.com/badbunny15/bad-bunny-bomba-estereo-ojitos"
+    },
+    mai: {
+      title: "MAI",
+      artist: "Milo J",
+      url: "https://soundcloud.com/drme-603987709/milo-j-mai-111"
+    },
+    morfina: {
+      title: "Morfina",
+      artist: "Humbe",
+      url: "https://soundcloud.com/humbe-sc/morfina"
+    }
+  }
 };
 
 const byId = (id) => document.getElementById(id);
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let startSoundtrack = () => {};
 
 function renderStory() {
   byId("qualities").innerHTML = story.qualities.map((item, index) => `
@@ -152,10 +170,99 @@ function setupMessages() {
   });
 }
 
+function setupMusic() {
+  const frame = byId("soundcloud-player");
+  const toggle = byId("music-toggle");
+  const title = byId("music-title");
+  const detail = byId("music-detail");
+  const dock = byId("music-control");
+  const state = { active: "ojitos", ready: false, playing: false, widget: null };
+
+  const updateControl = () => {
+    const song = story.soundtrack[state.active];
+    title.textContent = state.playing ? song.title : "La música está en pausa.";
+    detail.textContent = state.playing ? song.artist : "Toca Sonido para continuar.";
+    toggle.textContent = state.playing ? "Pausar" : "Sonido";
+    toggle.disabled = !state.ready;
+    toggle.setAttribute("aria-pressed", String(state.playing));
+    dock.classList.toggle("music-dock--playing", state.playing);
+  };
+
+  const playActive = () => {
+    if (!state.ready || !state.playing) return;
+    const song = story.soundtrack[state.active];
+    state.widget.load(song.url, {
+      auto_play: true,
+      buying: false,
+      sharing: false,
+      callback: () => state.widget.setVolume(44)
+    });
+  };
+
+  const loadTrack = (key) => {
+    if (!story.soundtrack[key] || key === state.active) return;
+    state.active = key;
+    if (state.ready) {
+      state.widget.pause();
+      playActive();
+    }
+    updateControl();
+  };
+
+  if (!window.SC) {
+    detail.textContent = "La música no pudo cargarse.";
+    return;
+  }
+
+  state.widget = window.SC.Widget(frame);
+  state.widget.bind(window.SC.Widget.Events.READY, () => {
+    state.ready = true;
+    state.widget.setVolume(44);
+    playActive();
+    updateControl();
+  });
+  state.widget.bind(window.SC.Widget.Events.PLAY, () => {
+    state.playing = true;
+    updateControl();
+  });
+  state.widget.bind(window.SC.Widget.Events.PAUSE, () => {
+    state.playing = false;
+    updateControl();
+  });
+
+  startSoundtrack = () => {
+    state.playing = true;
+    playActive();
+    updateControl();
+  };
+
+  toggle.addEventListener("click", () => {
+    if (!state.ready) return;
+    if (state.playing) {
+      state.widget.pause();
+    } else {
+      state.playing = true;
+      state.widget.play();
+      updateControl();
+    }
+  });
+
+  const layers = document.querySelectorAll("[data-soundtrack]");
+  const layerObserver = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (visible) loadTrack(visible.target.dataset.soundtrack);
+  }, { threshold: [0.35, 0.6] });
+  layers.forEach((layer) => layerObserver.observe(layer));
+  updateControl();
+}
+
 function setupOpening() {
   byId("enter-garden").addEventListener("click", () => {
     byId("opening").classList.add("opening--leaving");
     byId("garden").hidden = false;
+    startSoundtrack();
     window.setTimeout(() => {
       byId("opening").remove();
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
@@ -172,6 +279,7 @@ function setupFinale() {
 }
 
 renderStory();
+setupMusic();
 setupOpening();
 setupReveal();
 setupGallery();
