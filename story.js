@@ -36,6 +36,9 @@ function setupMusic() {
 function openJourney() {
   if (journeyStarted) return;
   journeyStarted = true;
+  // The iframe is the actual SoundCloud player.  It must stay in the document
+  // after the envelope fades away or the browser immediately stops its audio.
+  byId("soundcloud-player").classList.add("letter-sound-trigger--playing");
   byId("journey").hidden = false;
   document.body.classList.add("journey-open");
   const entry = byId("letter-entry");
