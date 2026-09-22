@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <iframe id="soundcloud-player" title="El Secreto de Grupo 5" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fgrupo5oficial%2Fel-secreto&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;visual=false"></iframe>
-
     <section class="letter-entry" id="letter-entry" aria-labelledby="entry-title">
       <div class="entry-glow" aria-hidden="true"></div>
       <div class="entry-flowers" id="entry-flowers" aria-hidden="true"></div>
@@ -22,12 +20,13 @@
         <h1 id="entry-title">Hay cosas que merecen abrirse despacio.</h1>
         <p>Esta es una carta. Después será un pequeño viaje por lo que ya es nuestro.</p>
       </div>
-      <button class="sealed-letter" id="begin-journey" type="button" aria-label="Abrir la carta para Mafi">
+      <div class="sealed-letter" id="begin-journey" role="group" aria-label="Carta para Mafi">
         <span class="sealed-letter__flap" aria-hidden="true"></span>
         <span class="sealed-letter__paper">Para Mafi<br /><em>ábrela cuando quieras</em></span>
         <span class="sealed-letter__seal" aria-hidden="true">M</span>
-      </button>
-      <p class="entry-hint">toca la carta</p>
+        <iframe id="soundcloud-player" class="letter-sound-trigger" title="Abrir la carta y escuchar El Secreto de Grupo 5" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?visual=true&amp;url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2398321908&amp;show_artwork=true"></iframe>
+      </div>
+      <p class="entry-hint">toca el sello dorado</p>
     </section>
 
     <main id="journey" hidden>

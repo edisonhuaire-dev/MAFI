@@ -8,7 +8,7 @@ button { font: inherit; cursor: pointer; }
 button:focus-visible { outline: 3px solid white; outline-offset: 5px; }
 img { display: block; width: 100%; max-width: 100%; }
 [hidden] { display: none !important; }
-#soundcloud-player { position: fixed; width: 1px; height: 1px; left: -999px; top: -999px; opacity: 0; pointer-events: none; }
+.letter-sound-trigger { position: absolute; z-index: 4; width: 5.3rem; height: 5.3rem; left: 50%; top: 43%; border: 0; opacity: .012; cursor: pointer; transform: translate(-50%, -50%); }.sealed-letter__seal { transition: box-shadow .35s ease, transform .35s ease; pointer-events: none; }.sealed-letter--ready .sealed-letter__seal { box-shadow: 0 0 0 7px rgba(246, 212, 82, .16), 0 0 30px rgba(246, 212, 82, .8); transform: translate(-50%, -50%) scale(1.08); }
 
 .letter-entry { position: relative; display: grid; min-height: 100svh; place-items: center; padding: clamp(1.5rem, 5vw, 4rem); overflow: hidden; isolation: isolate; background: radial-gradient(circle at 50% 46%, #5a4b12 0, #28220a 34%, #151208 70%); }
 .letter-entry::before, .letter-entry::after { position: absolute; inset: 1rem; z-index: -1; border: 1px solid rgba(251, 220, 95, .19); content: ""; transform: rotate(-2deg); }.letter-entry::after { inset: 2rem; opacity: .52; transform: rotate(2deg); }
