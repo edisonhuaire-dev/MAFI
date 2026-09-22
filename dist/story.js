@@ -44,7 +44,9 @@ function openJourney() {
   const entry = byId("letter-entry");
   entry.classList.add("letter-entry--opening");
   window.setTimeout(() => {
-    entry.remove();
+    // Keep the envelope in the DOM (visually hidden by CSS) because it owns
+    // the SoundCloud iframe that is currently playing.
+    entry.classList.add("letter-entry--played");
     byId("carta-inicial").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
   }, reduceMotion ? 0 : 760);
 }
