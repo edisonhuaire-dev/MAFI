@@ -12,6 +12,16 @@
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
+    <aside class="music-dock" id="music-control" aria-live="polite">
+      <span class="music-dock__equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
+      <div>
+        <p class="music-dock__label">capa sonora</p>
+        <strong id="music-title">La música empieza al entrar.</strong>
+        <span id="music-detail">Toca “Entrar al jardín” para comenzar.</span>
+      </div>
+      <button class="music-dock__button" id="music-toggle" type="button" disabled aria-pressed="false">Sonido</button>
+    </aside>
+    <iframe id="soundcloud-player" class="soundcloud-player" title="Reproductor de música de SoundCloud" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fbadbunny15%2Fbad-bunny-bomba-estereo-ojitos&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;visual=false"></iframe>
 
     <section class="opening" id="opening" aria-label="Entrada al jardín">
       <div class="opening__flower" aria-hidden="true">✿</div>
@@ -50,9 +60,10 @@
         </article>
       </section>
 
-      <section class="section eyes-section" aria-labelledby="mirada-title">
+      <section class="section eyes-section" aria-labelledby="mirada-title" data-soundtrack="ojitos">
         <div class="section-heading reveal">
           <p class="eyebrow">ojitos lindos</p>
+          <p class="sound-layer">Capa I <span>Ojitos Lindos · Bad Bunny &amp; Bomba Estéreo</span></p>
           <h2 id="mirada-title">Hay algo que me encanta de ti.</h2>
           <p>Bueno… en realidad son muchas cosas. Pero tu mirada fue la primera pista.</p>
         </div>
@@ -67,12 +78,13 @@
         <ol class="timeline" id="timeline"></ol>
       </section>
 
-      <section class="section photo-break">
+      <section class="section photo-break" data-soundtrack="mai">
         <div class="photo-break__image reveal">
           <img src="media/sillon-juntos.webp" alt="Mafer y Edison juntos en un momento tranquilo" loading="lazy" />
         </div>
         <div class="photo-break__copy reveal">
           <p class="eyebrow">mai</p>
+          <p class="sound-layer sound-layer--dark">Capa II <span>MAI · Milo J</span></p>
           <h2>Hay personas que llegan sin hacer demasiado ruido.</h2>
           <p>Y terminan ocupando muchísimo espacio dentro de uno.</p>
           <p class="micro-copy">Esta parte no necesita explicar más.</p>
@@ -163,15 +175,16 @@
         </div>
       </section>
 
-      <section class="section morfina-section" aria-labelledby="morfina-title">
+      <section class="section morfina-section" aria-labelledby="morfina-title" data-soundtrack="morfina">
         <div class="morfina__background" aria-hidden="true"></div>
         <div class="morfina__content reveal">
           <p class="eyebrow">nuestra canción</p>
+          <p class="sound-layer sound-layer--gold">Capa III <span>Morfina · Humbe</span></p>
           <h2 id="morfina-title">Morfina.</h2>
           <p class="morfina__line">Tú. Yo. Y todos esos momentos que solamente nosotros entendemos.</p>
           <p>Si algún día escuchas esta canción, quiero que sepas que hay un jardín encendido para ti, incluso cuando yo no esté contigo.</p>
           <div class="song-list" aria-label="Canciones de ustedes">
-            <span>Ojitos Lindos</span><span>MAI</span><span>El Secreto</span><strong>Morfina</strong>
+            <span>Ojitos Lindos</span><span>MAI</span><strong>Morfina · Humbe</strong>
           </div>
         </div>
         <figure class="morfina__photo reveal reveal--late">
@@ -223,6 +236,7 @@
       </div>
     </dialog>
 
+    <script src="https://w.soundcloud.com/player/api.js"></script>
     <script src="story.js"></script>
   </body>
 </html>
